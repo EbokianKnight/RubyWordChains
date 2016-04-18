@@ -1,5 +1,10 @@
 require "set"
 
+# A Wordchain is initialized with a dictionary. It takes in two words as inputs,
+# and by only making one letter change at a time, attempts to find a path
+# through the valid words of the dictionary between the two inputs. It outputs
+# this information as an array within the console, or provides a failed message.
+
 class WordChains
   ALPHABET = [*?a..?z]
 
@@ -25,7 +30,6 @@ class WordChains
   end
 
   def run(source, target)
-    @all_seen_words[source]
     @current_words = [source]
     until @current_words.empty? || @all_seen_words.include?(target)
       @current_words = explore_current_words
@@ -63,4 +67,3 @@ end
 
 test = WordChains.parse_from_file './dictionary.txt'
 test.run('trees','treat')
-
